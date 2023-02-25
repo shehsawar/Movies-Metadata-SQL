@@ -1,0 +1,159 @@
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.25.128/dbc,dbc;
+DATABASE DP_STG1;
+.set record vartext ",";
+
+
+DROP TABLE Movies;
+DROP TABLE Movies_ERROR1; -- Contrainst Violation TABLE
+DROP TABLE Movies_ERROR2;  -- Uniqueness Violation Table
+
+CREATE MULTISET TABLE Movies ,NO FALLBACK,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+     (color VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 director_name VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 num_critic_for_reviews VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 duration VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 director_facebook_likes VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 actor_3_facebook_likes VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 actor_2_name VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 actor_1_facebook_likes VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 gross VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 genres VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 actor_1_name VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 movie_title VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 num_voted_users VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 cast_total_facebook_likes VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 actor_3_name VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 facenumber_in_poster VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 plot_keywords VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 movie_imdb_link VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 num_user_for_reviews VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 language_ VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 country VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 content_rating VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 budget VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 title_year VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 actor_2_facebook_likes VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 imdb_score VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 aspect_ratio VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+	 movie_facebook_likes VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC )
+ --NO PRIMARY INDEX;
+PRIMARY INDEX Movies ( color );
+
+	
+RECORD 2;
+
+DEFINE
+
+color (VARCHAR(200)) 
+director_name (VARCHAR(200)) 
+num_critic_for_reviews (VARCHAR(200)) 
+duration (VARCHAR(200)) 
+director_facebook_likes (VARCHAR(200)) 
+actor_3_facebook_likes (VARCHAR(200)) 
+actor_2_name (VARCHAR(200)) 
+actor_1_facebook_likes (VARCHAR(200)) 
+gross (VARCHAR(200)) genres (VARCHAR(200)) 
+actor_1_name (VARCHAR(200)) 
+movie_title (VARCHAR(200)) 
+num_voted_users (VARCHAR(200)) 
+cast_total_facebook_likes (VARCHAR(200)) 
+actor_3_name (VARCHAR(200)) 
+facenumber_in_poster (VARCHAR(200)) 
+plot_keywords (VARCHAR(200)) 
+movie_imdb_link (VARCHAR(200)) 
+num_user_for_reviews (VARCHAR(200)) 
+language_ (VARCHAR(200)) country (VARCHAR(200)) 
+content_rating (VARCHAR(200)) budget (VARCHAR(200)) 
+title_year (VARCHAR(200)) 
+actor_2_facebook_likes (VARCHAR(200)) 
+imdb_score (VARCHAR(200)) 
+aspect_ratio (VARCHAR(200)) 
+movie_facebook_likes (VARCHAR(200)) 
+
+FILE="D:\DWHBI\data analytics SQL\populating DWH\movie_metadata.csv";
+
+begin loading
+Movies
+errorfiles
+Movies_ERROR1
+,Movies_ERROR2
+
+
+CHECKPOINT 400000; --If processing stops while a Teradata FastLoad job is running, the job can be restarted at the most recent checkpoint.
+
+insert into Movies (
+
+color ,
+director_name ,
+num_critic_for_reviews ,
+duration ,
+director_facebook_likes ,
+actor_3_facebook_likes ,
+actor_2_name ,
+actor_1_facebook_likes ,
+gross ,
+genres ,
+actor_1_name ,
+movie_title ,
+num_voted_users ,
+cast_total_facebook_likes ,
+actor_3_name ,
+facenumber_in_poster ,
+plot_keywords ,
+movie_imdb_link ,
+num_user_for_reviews ,
+language_ ,
+country ,
+content_rating ,
+budget ,
+title_year ,
+actor_2_facebook_likes ,
+imdb_score ,
+aspect_ratio ,
+movie_facebook_likes
+ 
+)
+values
+
+(
+
+:color ,
+:director_name ,
+:num_critic_for_reviews ,
+:duration ,
+:director_facebook_likes ,
+:actor_3_facebook_likes ,
+:actor_2_name ,
+:actor_1_facebook_likes ,
+:gross ,:genres ,
+:actor_1_name ,
+:movie_title ,
+:num_voted_users ,
+:cast_total_facebook_likes ,
+:actor_3_name ,
+:facenumber_in_poster ,
+:plot_keywords ,
+:movie_imdb_link ,
+:num_user_for_reviews ,
+:language_ ,
+:country ,
+:content_rating ,
+:budget ,
+:title_year ,
+:actor_2_facebook_likes ,
+:imdb_score ,
+:aspect_ratio ,
+:movie_facebook_likes
+ 
+
+
+);
+
+
+end loading; 
+
+.LOGOFF;

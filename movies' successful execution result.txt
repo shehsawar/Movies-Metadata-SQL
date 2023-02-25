@@ -1,0 +1,365 @@
+Microsoft Windows [Version 10.0.19044.2075]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Shehsawar A. Zafar>fastload <"D:\DWHBI\Adventure Works Project\Fastload\FastLoad\movies.fld"
+     ===================================================================
+     =                                                                 =
+     =          FASTLOAD UTILITY     VERSION 15.00.00.00               =
+     =          PLATFORM WIN32                                         =
+     =          PID      5444                                          =
+     =                                                                 =
+     ===================================================================
+
+     ===================================================================
+     =                                                                 =
+     =          Copyright 1984-2014, Teradata Corporation.             =
+     =          ALL RIGHTS RESERVED.                                   =
+     =                                                                 =
+     ===================================================================
+
+**** 20:08:12 Processing starting at: Mon Oct 10 20:08:12 2022
+
+0001 .sessions 2;
+
+**** 20:08:12 FDL4866 SESSIONS command accepted
+
+0002 ERRLIMIT 40;
+
+**** 20:08:12 Error limit set to: 40
+
+     ===================================================================
+     =                                                                 =
+     =          Logon/Connection                                       =
+     =                                                                 =
+     ===================================================================
+
+0003 .LOGON 192.168.25.128/dbc,
+
+**** 20:08:12 Teradata Database Release: 15.00.01.01
+**** 20:08:12 Teradata Database Version: 15.00.01.01
+**** 20:08:12 Number of AMPs available: 2
+**** 20:08:12 Current CLI or RDBMS allows maximum row size: 64K
+**** 20:08:12 Character set for this job: ASCII
+
+0004 DATABASE DP_STG1;
+
+**** 20:08:12 RDBMS error 3802: Database 'DP_STG1' does not exist.
+     ===================================================================
+     =                                                                 =
+     =          Logoff/Disconnect                                      =
+     =                                                                 =
+     ===================================================================
+
+**** 20:08:12 Logging off all sessions
+**** 20:08:12 Total processor time used = '0.234375 Seconds'
+     .        Start : Mon Oct 10 20:08:12 2022
+     .        End   : Mon Oct 10 20:08:12 2022
+     .        Highest return code encountered = '12'.
+**** 20:08:12 FDL4818 FastLoad Terminated
+
+C:\Users\Shehsawar A. Zafar>cd..
+
+C:\Users>cd..
+
+C:\>fastload <"D:\DWHBI\Adventure Works Project\Fastload\FastLoad\movies.fld"
+     ===================================================================
+     =                                                                 =
+     =          FASTLOAD UTILITY     VERSION 15.00.00.00               =
+     =          PLATFORM WIN32                                         =
+     =          PID      9900                                          =
+     =                                                                 =
+     ===================================================================
+
+     ===================================================================
+     =                                                                 =
+     =          Copyright 1984-2014, Teradata Corporation.             =
+     =          ALL RIGHTS RESERVED.                                   =
+     =                                                                 =
+     ===================================================================
+
+**** 20:18:39 Processing starting at: Mon Oct 10 20:18:39 2022
+
+0001 .sessions 2;
+
+**** 20:18:39 FDL4866 SESSIONS command accepted
+
+0002 ERRLIMIT 40;
+
+**** 20:18:39 Error limit set to: 40
+
+     ===================================================================
+     =                                                                 =
+     =          Logon/Connection                                       =
+     =                                                                 =
+     ===================================================================
+
+0003 .LOGON 192.168.25.128/dbc,
+
+**** 20:18:40 Teradata Database Release: 15.00.01.01
+**** 20:18:40 Teradata Database Version: 15.00.01.01
+**** 20:18:40 Number of AMPs available: 2
+**** 20:18:40 Current CLI or RDBMS allows maximum row size: 64K
+**** 20:18:40 Character set for this job: ASCII
+
+0004 DATABASE DP_STG1;
+
+**** 20:18:40 Command completed successfully
+
+0005 .set record vartext ",";
+
+**** 20:18:40 Now set to read 'Variable-Length Text' records
+**** 20:18:40 Delimiter character(s) is set to ','
+**** 20:18:40 Command completed successfully
+
+
+0006 DROP TABLE Movies;
+
+**** 20:18:40 RDBMS error 3807: Object 'Movies' does not exist.
+
+0007 DROP TABLE Movies_ERROR1; -- Contrainst Violation TABLE
+
+**** 20:18:40 RDBMS error 3807: Object 'Movies_ERROR1' does not exist.
+**** 20:18:40 Warning: Extra text after command found.
+              The text '-- Contrainst Violation TABLE' not processed.
+
+0008 DROP TABLE Movies_ERROR2;  -- Uniqueness Violation Table
+
+**** 20:18:40 RDBMS error 3807: Object 'Movies_ERROR2' does not exist.
+**** 20:18:40 Warning: Extra text after command found.
+              The text '-- Uniqueness Violation Table' not processed.
+
+
+0009 CREATE MULTISET TABLE Movies ,NO FALLBACK,
+          NO BEFORE JOURNAL,
+          NO AFTER JOURNAL
+          (color VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         director_name VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         num_critic_for_reviews VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC
+      ,
+         duration VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         director_facebook_likes VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFI
+     C ,
+         actor_3_facebook_likes VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC
+      ,
+         actor_2_name VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         actor_1_facebook_likes VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC
+      ,
+         gross VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         genres VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         actor_1_name VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         movie_title VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         num_voted_users VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         cast_total_facebook_likes VARCHAR(200) CHARACTER SET LATIN NOT CASESPECI
+     FIC ,
+         actor_3_name VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         facenumber_in_poster VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+
+         plot_keywords VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         movie_imdb_link VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         num_user_for_reviews VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+
+         language_ VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         country VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         content_rating VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         budget VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         title_year VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         actor_2_facebook_likes VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC
+      ,
+         imdb_score VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,
+         aspect_ratio VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC ,movie_fa
+     cebook_likes
+      VARCHAR(200) CHARACTER SET LATIN NOT CASESPECIFIC )
+      --NO PRIMARY INDEX;
+
+**** 20:18:41 Command completed successfully
+
+0010 PRIMARY INDEX Movies ( color );
+
+**** 20:18:41 FDL4800 Invalid FastLoad statement
+
+
+0011 RECORD 2;
+
+**** 20:18:41 Starting record number set to  : 2
+
+
+0012 DEFINE
+
+     color (VARCHAR(200))
+     director_name (VARCHAR(200))
+     num_critic_for_reviews (VARCHAR(200))
+     duration (VARCHAR(200))
+     director_facebook_likes (VARCHAR(200))
+     actor_3_facebook_likes (VARCHAR(200))
+     actor_2_name (VARCHAR(200))
+     actor_1_facebook_likes (VARCHAR(200))
+     gross (VARCHAR(200)) genres (VARCHAR(200))
+     actor_1_name (VARCHAR(200))
+     movie_title (VARCHAR(200))
+     num_voted_users (VARCHAR(200))
+     cast_total_facebook_likes (VARCHAR(200))
+     actor_3_name (VARCHAR(200))
+     facenumber_in_poster (VARCHAR(200))
+     plot_keywords (VARCHAR(200))
+     movie_imdb_link (VARCHAR(200))
+     num_user_for_reviews (VARCHAR(200))
+     language_ (VARCHAR(200)) country (VARCHAR(200))
+     content_rating (VARCHAR(200)) budget (VARCHAR(200))
+     title_year (VARCHAR(200))
+     actor_2_facebook_likes (VARCHAR(200))
+     imdb_score (VARCHAR(200))
+     aspect_ratio (VARCHAR(200))
+     movie_facebook_likes (VARCHAR(200))
+
+     FILE="D:\DWHBI\Adventure Works Project\Fastload\FastLoad\movie_metadata.cs
+     v";
+
+**** 20:18:41 FDL4803 DEFINE statement processed
+
+
+0013 begin loading
+     Movies
+     errorfiles
+     Movies_ERROR1
+     ,Movies_ERROR2
+
+
+     CHECKPOINT 400000; --If processing stops while a Teradata FastLoad job is
+     running, the job can be restarted at the most recent checkpoint.
+
+**** 20:18:42 Number of FastLoad sessions requested = 2
+**** 20:18:42 Number of FastLoad sessions connected = 2
+**** 20:18:42 FDL4808 LOGON successful
+**** 20:18:42 Number of AMPs available: 2
+**** 20:18:42 BEGIN LOADING COMPLETE
+**** 20:18:42 Warning: Extra text after command found.
+              The text '--If processing stops while a ' not processed.
+
+
+     ===================================================================
+     =                                                                 =
+     =          Insert Phase                                           =
+     =                                                                 =
+     ===================================================================
+
+0014 insert into Movies (
+
+     color ,
+     director_name ,
+     num_critic_for_reviews ,
+     duration ,
+     director_facebook_likes ,
+     actor_3_facebook_likes ,
+     actor_2_name ,
+     actor_1_facebook_likes ,
+     gross ,
+     genres ,
+     actor_1_name ,
+     movie_title ,
+     num_voted_users ,
+     cast_total_facebook_likes ,
+     actor_3_name ,
+     facenumber_in_poster ,
+     plot_keywords ,
+     movie_imdb_link ,
+     num_user_for_reviews ,
+     language_ ,
+     country ,
+     content_rating ,
+     budget ,
+     title_year ,
+     actor_2_facebook_likes ,
+     imdb_score ,
+     aspect_ratio ,
+     movie_facebook_likes
+
+     )
+     values
+
+     (
+
+     :color ,
+     :director_name ,
+     :num_critic_for_reviews ,
+     :duration ,
+     :director_facebook_likes ,
+     :actor_3_facebook_likes ,
+     :actor_2_name ,
+     :actor_1_facebook_likes ,
+     :gross ,:genres ,
+     :actor_1_name ,
+     :movie_title ,
+     :num_voted_users ,
+     :cast_total_facebook_likes ,
+     :actor_3_name ,
+     :facenumber_in_poster ,
+     :plot_keywords ,
+     :movie_imdb_link ,
+     :num_user_for_reviews ,
+     :language_ ,
+     :country ,
+     :content_rating ,
+     :budget ,
+     :title_year ,
+     :actor_2_facebook_likes ,
+     :imdb_score ,
+     :aspect_ratio ,
+     :movie_facebook_likes
+
+
+
+     );
+
+**** 20:18:43 Number of recs/msg: 11
+**** 20:18:43 Starting to send to RDBMS with record 2
+**** 20:18:43 Sending row 5044
+**** 20:18:43 Finished sending rows to the RDBMS
+
+**** 20:18:43 Acquisition Phase statistics:
+              Elapsed time: 00:00:00 (in hh:mm:ss)
+              CPU time:     0.078125 Seconds
+              MB/sec:       N/A
+              MB/cpusec:    20.13
+
+
+     ===================================================================
+     =                                                                 =
+     =          End Loading Phase                                      =
+     =                                                                 =
+     ===================================================================
+
+0015 end loading;
+
+**** 20:18:43 END LOADING COMPLETE
+
+     Total Records Read              =  5044
+      - skipped by RECORD command    =  1
+      - sent to the RDBMS            =  5043
+     Total Error Table 1             =  0  ---- Table has been dropped
+     Total Error Table 2             =  0  ---- Table has been dropped
+     Total Inserts Applied           =  4998
+     Total Duplicate Rows            =  45
+
+     Start:   Mon Oct 10 20:18:43 2022
+     End  :   Mon Oct 10 20:18:43 2022
+
+**** 20:18:43 Application Phase statistics:
+              Elapsed time: 00:00:00 (in hh:mm:ss)
+
+
+0016 .LOGOFF;
+
+     ===================================================================
+     =                                                                 =
+     =          Logoff/Disconnect                                      =
+     =                                                                 =
+     ===================================================================
+
+**** 20:18:44 Logging off all sessions
+**** 20:18:45 Total processor time used = '0.734375 Seconds'
+     .        Start : Mon Oct 10 20:18:39 2022
+     .        End   : Mon Oct 10 20:18:45 2022
+     .        Highest return code encountered = '8'.
+**** 20:18:45 FDL4818 FastLoad Terminated
+
+C:\>
